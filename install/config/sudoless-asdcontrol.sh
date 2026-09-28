@@ -1,3 +1,6 @@
-# Setup sudo-less controls for controlling brightness on Apple Displays
-echo "$USER ALL=(ALL) NOPASSWD: /usr/bin/asdcontrol" | sudo tee /etc/sudoers.d/asdcontrol
-sudo chmod 440 /etc/sudoers.d/asdcontrol
+# Passwordless asdcontrol is not installed.
+# The old NOPASSWD sudoers grant could be used to reboot the machine.
+if [[ -f /etc/sudoers.d/asdcontrol ]]; then
+  sudo rm -f /etc/sudoers.d/asdcontrol
+fi
+true

@@ -1,12 +1,6 @@
-# Configure pacman
-sudo cp -f ~/.local/share/omarchy/default/pacman/pacman-${OMARCHY_MIRROR:-stable}.conf /etc/pacman.conf
-sudo cp -f ~/.local/share/omarchy/default/pacman/mirrorlist-${OMARCHY_MIRROR:-stable} /etc/pacman.d/mirrorlist
+# Official Arch repos only. Do not add the Omarchy repo or the T2 mirror.
+sudo cp -f "$HOME/.local/share/omarchy/default/pacman/pacman-stable.conf" /etc/pacman.conf
 
-if lspci -nn | grep -q "106b:180[12]"; then
-  cat <<EOF | sudo tee -a /etc/pacman.conf >/dev/null
-
-[arch-mact2]
-Server = https://github.com/NoaHimesaka1873/arch-mact2-mirror/releases/download/release
-SigLevel = Never
-EOF
+if grep -q 'omarchy.org' /etc/pacman.d/mirrorlist 2>/dev/null; then
+  echo 'Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist >/dev/null
 fi

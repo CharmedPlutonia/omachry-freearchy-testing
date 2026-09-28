@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# omarchy:summary=Launch the default editor as determined by $EDITOR (set via ~/.config/uwsm/default) (or nvim if missing).
+# omarchy:summary=Launch the default editor as determined by $EDITOR (set via ~/.config/uwsm/default) (or nano if missing).
 # omarchy:args=<path>
 
-omarchy-cmd-present "$EDITOR" || EDITOR=nvim
+omarchy-cmd-present "$EDITOR" || EDITOR=nano
 
 case "$EDITOR" in
 nvim | vim | nano | micro | hx | helix | fresh)

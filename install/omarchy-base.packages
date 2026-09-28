@@ -1,12 +1,8 @@
-# Omarchy core package list installed via install/packaging/base.sh
-# This file is also used by the ISO builder when determining needs
-
 1password-beta
 1password-cli
 aether
 alacritty
 alsa-utils
-asdcontrol
 avahi
 bash-completion
 bat
@@ -14,7 +10,7 @@ bluetui
 bolt
 brightnessctl
 btop
-chromium
+ungoogled-chromium-widevine-bin
 clang
 claude-code
 cliamp
@@ -38,6 +34,7 @@ fcitx5-gtk
 fcitx5-qt
 fd
 ffmpegthumbnailer
+flatpak
 fontconfig
 fzf
 github-cli
@@ -53,7 +50,7 @@ gvfs-smb
 hypridle
 hyprland
 hyprland-guiutils
-hyprland-preview-share-picker
+hyprland-preview-share-picker-git
 hyprlock
 hyprpicker
 hyprsunset
@@ -89,11 +86,11 @@ noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
 nss-mdns
-neovim
+nano
 obs-studio
 obsidian
-omarchy-nvim
-omarchy-walker
+walker
+elephant
 pamixer
 pinta
 playerctl
@@ -110,7 +107,8 @@ ripgrep
 ruby
 rust
 satty
-sddm
+greetd
+greetd-tuigreet
 signal-desktop
 slurp
 spotify
@@ -125,7 +123,6 @@ tesseract-data-eng
 tldr
 tree-sitter-cli
 tmux
-tobi-try
 ttf-ia-writer
 ttf-jetbrains-mono-nerd
 typora
@@ -148,5 +145,4 @@ xdg-terminal-exec
 xmlstarlet
 xournalpp
 yaru-icon-theme
-yay
 zoxide

@@ -1,2 +1,2 @@
-# Includes lazyvim and the themes
-omarchy-nvim-setup
+# nano is installed with the base packages and set as the default editor.
+true

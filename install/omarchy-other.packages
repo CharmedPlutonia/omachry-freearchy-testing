@@ -25,8 +25,6 @@ limine-snapper-sync
 linux
 linux-firmware
 linux-headers
-linux-ptl
-linux-ptl-headers
 macbook12-spi-driver-dkms
 nvidia-580xx-dkms
 nvidia-dkms
@@ -64,10 +62,6 @@ linux-firmware-marvell
 # Dell laptop support packages
 dell-xps-touchpad-haptics
 
-# T2 MacBook support packages
-apple-bcm-firmware
-apple-t2-audio-config
-linux-t2
-linux-t2-headers
-t2fanrd
-tiny-dfr
+# T2 MacBook support packages are not installed.
+# Freearchy-nightly stays on the stock Arch kernel and does not use the arch-mact2 repo.
+

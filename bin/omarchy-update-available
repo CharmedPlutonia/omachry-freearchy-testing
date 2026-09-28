@@ -1,24 +1,23 @@
 #!/bin/bash
 
-# omarchy:summary=Get remote tag
+# omarchy:summary=Report whether Freearchy-nightly has new commits on the fork
 
-latest_tag=$(git -C "$OMARCHY_PATH" ls-remote --tags origin | grep -v "{}" | awk '{print $2}' | sed 's#refs/tags/##' | sort -V | tail -n 1)
-if [[ -z $latest_tag ]]; then
-  echo "Error: Could not retrieve latest tag."
+fork="https://github.com/CharmedPlutonia/omachry-freearchy-testing.git"
+branch="freearchy-nightly"
+
+git -C "$OMARCHY_PATH" remote set-url origin "$fork"
+if ! git -C "$OMARCHY_PATH" fetch --quiet origin "$branch"; then
+  echo "Error: Could not reach the Freearchy-nightly fork."
   exit 1
 fi
 
-# Get local tag
-current_tag=$(git -C "$OMARCHY_PATH" describe --tags $(git -C "$OMARCHY_PATH" rev-list --tags --max-count=1))
-if [[ -z $current_tag ]]; then
-  echo "Error: Could not retrieve current tag."
-  exit 1
-fi
+local_rev=$(git -C "$OMARCHY_PATH" rev-parse HEAD)
+remote_rev=$(git -C "$OMARCHY_PATH" rev-parse "origin/$branch")
 
-if [[ $current_tag != $latest_tag ]]; then
-  echo "Omarchy update available ($latest_tag)"
+if [[ $local_rev != $remote_rev ]]; then
+  echo "Freearchy-nightly update available"
   exit 0
-else
-  echo "Omarchy is up to date ($current_tag)"
-  exit 1
 fi
+
+echo "Freearchy-nightly is up to date"
+exit 1

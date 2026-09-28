@@ -1,9 +1,22 @@
-# Omarchy
+# Freearchy-nightly
 
-Omarchy is a beautiful, modern & opinionated Linux distribution by DHH.
+Freearchy-nightly is a 3.8.4-based test fork of Omarchy, brought back toward stock Arch.
 
-Read more at [omarchy.org](https://omarchy.org).
+- Official Arch repositories only. No Omarchy package repository and no Omarchy mirrors.
+- Stock `linux` kernel. No `linux-ptl`, `linux-t2`, or Omarchy kernel.
+- Boot login is greetd + tuigreet. hyprlock is only the session lock.
+- Default browser is `ungoogled-chromium-widevine-bin` (ungoogled Chromium with Widevine DRM).
+- Default editor is nano, including text-file associations.
+- Default theme is Catppuccin Mocha, with the night-bike wallpaper first.
+- Flatpak is installed and Flathub is enabled.
+- Updates track `freearchy-nightly` on this fork, not upstream Omarchy 4.x.
+
+Install from the branch:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/CharmedPlutonia/omachry-freearchy-testing/freearchy-nightly/boot.sh | bash
+```
 
 ## License
 
-Omarchy is released under the [MIT License](https://opensource.org/licenses/MIT).
+Released under the [MIT License](https://opensource.org/licenses/MIT). Upstream Omarchy is by DHH.

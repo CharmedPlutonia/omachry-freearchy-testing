@@ -424,7 +424,8 @@ show_setup_default_terminal_menu() {
 
 show_setup_default_editor_menu() {
   local options=""
-  omarchy-cmd-present nvim && options="$options  Neovim"
+  omarchy-cmd-present nano && options="$options  nano"
+  omarchy-cmd-present nvim && options="${options:+$options\n}  Neovim"
   omarchy-cmd-present code && options="${options:+$options\n}  VSCode"
   omarchy-cmd-present cursor && options="${options:+$options\n}  Cursor"
   omarchy-cmd-present zeditor && options="${options:+$options\n}  Zed"
@@ -435,6 +436,7 @@ show_setup_default_editor_menu() {
 
   local current=""
   case "$(omarchy-default-editor)" in
+  nano) current="  nano" ;;
   nvim) current="  Neovim" ;;
   code) current="  VSCode" ;;
   cursor) current="  Cursor" ;;
@@ -446,6 +448,7 @@ show_setup_default_editor_menu() {
   esac
 
   case $(menu "Default Editor" "$options" "" "$current") in
+  *nano*) omarchy-default-editor nano ;;
   *Neovim*) omarchy-default-editor nvim ;;
   *VSCode*) omarchy-default-editor code ;;
   *Cursor*) omarchy-default-editor cursor ;;
@@ -757,8 +760,8 @@ show_remove_elixir_menu() {
 }
 
 show_update_menu() {
-  case $(menu "Update" "  Omarchy\n󰔫  Channel\n  Config\n󰸌  Extra Themes\n  Process\n󰇅  Hardware\n  Firmware\n  Password\n  Timezone\n  Time") in
-  *Omarchy*) present_terminal omarchy-update ;;
+  case $(menu "Update" "  Freearchy\n󰔫  Channel\n  Config\n󰸌  Extra Themes\n  Process\n󰇅  Hardware\n  Firmware\n  Password\n  Timezone\n  Time") in
+  *Freearchy*) present_terminal omarchy-update ;;
   *Channel*) show_update_channel_menu ;;
   *Config*) show_update_config_menu ;;
   *Themes*) present_terminal omarchy-theme-update ;;
@@ -773,11 +776,8 @@ show_update_menu() {
 }
 
 show_update_channel_menu() {
-  case $(menu "Update channel" "🟢 Stable\n🟡 RC\n🟠 Edge\n🔴 Dev") in
-  *Stable*) present_terminal "omarchy-channel-set stable" ;;
-  *RC*) present_terminal "omarchy-channel-set rc" ;;
-  *Edge*) present_terminal "omarchy-channel-set edge" ;;
-  *Dev*) present_terminal "omarchy-channel-set dev" ;;
+  case $(menu "Update channel" "🌙  Freearchy-nightly") in
+  *Freearchy*) present_terminal "omarchy-channel-set nightly" ;;
   *) show_update_menu ;;
   esac
 }

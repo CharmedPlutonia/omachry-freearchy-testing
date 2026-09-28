@@ -1,17 +1,27 @@
 #!/bin/bash
 
-# omarchy:summary=Pull the latest Omarchy git changes
+# omarchy:summary=Pull the latest Freearchy-nightly git changes
 
 set -e
 
-echo -e "\e[32mUpdate Omarchy\e[0m"
+echo -e "\e[32mUpdate Freearchy-nightly\e[0m"
 
 omarchy-update-time
 
-# Suppress Hyprland config errors while git updates default config files mid-pull
+fork="https://github.com/CharmedPlutonia/omachry-freearchy-testing.git"
+branch="freearchy-nightly"
+
 hyprctl keyword debug:suppress_errors true &>/dev/null || true
 
-git -C $OMARCHY_PATH pull --autostash
-git -C $OMARCHY_PATH --no-pager diff --check || git -C $OMARCHY_PATH reset --merge
+git -C "$OMARCHY_PATH" remote set-url origin "$fork"
+git -C "$OMARCHY_PATH" fetch origin "$branch"
+
+if [[ $(git -C "$OMARCHY_PATH" rev-parse --abbrev-ref HEAD) != "$branch" ]]; then
+  git -C "$OMARCHY_PATH" checkout -B "$branch" "origin/$branch"
+else
+  git -C "$OMARCHY_PATH" pull --autostash origin "$branch"
+fi
+
+git -C "$OMARCHY_PATH" --no-pager diff --check || git -C "$OMARCHY_PATH" reset --merge
 
 hyprctl reload &>/dev/null || true

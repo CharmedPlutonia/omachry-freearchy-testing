@@ -1,23 +1,16 @@
 #!/bin/bash
 
-# omarchy:summary=Overwrite the package configuration for /etc/pacman with the Omarchy default of using its dedicated mirrors and repositories, then update all packages.
+# omarchy:summary=Point pacman at official Arch repositories only, then update packages.
 # omarchy:requires-sudo=true
 
 sudo cp -f /etc/pacman.conf /etc/pacman.conf.bak
 sudo cp -f /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
 
-channel="${1:-stable}"
+sudo cp -f "$OMARCHY_PATH/default/pacman/pacman-stable.conf" /etc/pacman.conf
 
-if [[ $channel != "stable" && $channel != "rc" && $channel != "edge" ]]; then
-  echo "Error: Invalid channel '$channel'. Must be one of: stable, rc, edge"
-  exit 1
+if grep -q 'omarchy.org' /etc/pacman.d/mirrorlist 2>/dev/null; then
+  echo "Replacing Omarchy package mirror with the official Arch geo mirror"
+  echo 'Server = https://geo.mirror.pkgbuild.com/$repo/os/$arch' | sudo tee /etc/pacman.d/mirrorlist >/dev/null
 fi
 
-echo "Setting channel to $channel"
-echo
-
-sudo cp -f "$OMARCHY_PATH/default/pacman/pacman-$channel.conf" /etc/pacman.conf
-sudo cp -f "$OMARCHY_PATH/default/pacman/mirrorlist-$channel" /etc/pacman.d/mirrorlist
-
-# Reset all package DBs and then update
-sudo pacman -Syyuu --noconfirm
+sudo pacman -Syyu --noconfirm

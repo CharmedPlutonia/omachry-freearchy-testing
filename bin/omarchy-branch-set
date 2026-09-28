@@ -1,18 +1,14 @@
 #!/bin/bash
 
-# omarchy:summary=Set the branch for Omarchy's git repository.
-# omarchy:args=<master|rc|dev>
+# omarchy:summary=Freearchy-nightly only tracks its own branch
+# omarchy:args=<freearchy-nightly>
 
-if (($# == 0)); then
-  echo "Usage: omarchy-branch-set [master|rc|dev]"
-  exit 1
-else
-  branch="$1"
-fi
+branch="${1:-freearchy-nightly}"
 
-if [[ $branch != "master" && $branch != "rc" && $branch != "dev" ]]; then
-  echo "Error: Invalid branch '$branch'. Must be one of: master, rc, dev"
+if [[ $branch != "freearchy-nightly" && $branch != "nightly" ]]; then
+  echo "Error: Refusing to switch to '$branch'. Freearchy-nightly does not track upstream Omarchy branches."
   exit 1
 fi
 
-git -C $OMARCHY_PATH switch $branch
+git -C "$OMARCHY_PATH" fetch origin freearchy-nightly
+git -C "$OMARCHY_PATH" switch -C freearchy-nightly origin/freearchy-nightly
