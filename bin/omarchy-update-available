@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# omarchy:summary=Report whether Freearchy-nightly has new commits on the fork
+# omarchy:summary=Report whether Freearchy testing has new commits
 
-fork="https://github.com/CharmedPlutonia/omachry-freearchy-testing.git"
-branch="freearchy-nightly"
+fork="https://github.com/CharmedPlutonia/Freearchy.git"
+branch="testing"
 
 git -C "$OMARCHY_PATH" remote set-url origin "$fork"
 if ! git -C "$OMARCHY_PATH" fetch --quiet origin "$branch"; then
-  echo "Error: Could not reach the Freearchy-nightly fork."
+  echo "Error: Could not reach the Freearchy testing repo."
   exit 1
 fi
 
@@ -15,9 +15,9 @@ local_rev=$(git -C "$OMARCHY_PATH" rev-parse HEAD)
 remote_rev=$(git -C "$OMARCHY_PATH" rev-parse "origin/$branch")
 
 if [[ $local_rev != $remote_rev ]]; then
-  echo "Freearchy-nightly update available"
+  echo "Freearchy testing update available"
   exit 0
 fi
 
-echo "Freearchy-nightly is up to date"
+echo "Freearchy testing is up to date"
 exit 1

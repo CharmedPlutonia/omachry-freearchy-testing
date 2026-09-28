@@ -63,5 +63,5 @@ linux-firmware-marvell
 dell-xps-touchpad-haptics
 
 # T2 MacBook support packages are not installed.
-# Freearchy-nightly stays on the stock Arch kernel and does not use the arch-mact2 repo.
+# Freearchy testing stays on the stock Arch kernel and does not use the arch-mact2 repo.
 

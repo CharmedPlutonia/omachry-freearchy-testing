@@ -6,10 +6,6 @@ hl.window_rule({ match = { class = [[([fF]irefox|zen|librewolf)]] }, tag = [[+fi
 hl.window_rule({ match = { tag = [[chromium-based-browser]] }, tag = [[-default-opacity]] })
 hl.window_rule({ match = { tag = [[firefox-based-browser]] }, tag = [[-default-opacity]] })
 
--- Video apps: remove chromium browser tag so they don't get opacity applied
-hl.window_rule({ match = { class = [[(chrome-youtube.com__-Default|chrome-app.zoom.us__wc_home-Default)]] }, tag = [[-chromium-based-browser]] })
-hl.window_rule({ match = { class = [[(chrome-youtube.com__-Default|chrome-app.zoom.us__wc_home-Default)]] }, tag = [[-default-opacity]] })
-
 -- Force chromium-based browsers into a tile to deal with --app bug
 hl.window_rule({ match = { tag = [[chromium-based-browser]] }, tile = true })
 

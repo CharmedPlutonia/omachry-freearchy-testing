@@ -1,6 +1,6 @@
-# Freearchy-nightly
+# Freearchy testing
 
-Freearchy-nightly is a 3.8.4-based test fork of Omarchy, brought back toward stock Arch.
+Freearchy testing is a 3.8.4-based fork of Omarchy, brought back toward stock Arch.
 
 - Official Arch repositories only. No Omarchy package repository and no Omarchy mirrors.
 - Stock `linux` kernel. No `linux-ptl`, `linux-t2`, or Omarchy kernel.
@@ -9,12 +9,12 @@ Freearchy-nightly is a 3.8.4-based test fork of Omarchy, brought back toward sto
 - Default editor is nano, including text-file associations.
 - Default theme is Catppuccin Mocha, with the night-bike wallpaper first.
 - Flatpak is installed and Flathub is enabled.
-- Updates track `freearchy-nightly` on this fork, not upstream Omarchy 4.x.
+- Updates track `testing` on this repo, not upstream Omarchy 4.x.
 
 Install from the branch:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/CharmedPlutonia/omachry-freearchy-testing/freearchy-nightly/boot.sh | bash
+curl -fsSL https://raw.githubusercontent.com/CharmedPlutonia/Freearchy/testing/boot.sh | bash
 ```
 
 ## License

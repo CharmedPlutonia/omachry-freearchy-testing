@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# omarchy:summary=Update Freearchy-nightly. Other branches are refused.
-# omarchy:args=<freearchy-nightly>
+# omarchy:summary=Update Freearchy testing. Other branches are refused.
+# omarchy:args=<testing>
 
 set -e
 
-branch="${1:-freearchy-nightly}"
+branch="${1:-testing}"
 
-if [[ $branch != "freearchy-nightly" && $branch != "nightly" ]]; then
+if [[ $branch != "testing" && $branch != "nightly" && $branch != "freearchy-nightly" ]]; then
   echo "Error: Refusing to update from '$branch'."
   exit 1
 fi
 
 omarchy-snapshot create || (( $? == 127 ))
-omarchy-channel-set nightly
+omarchy-channel-set testing

@@ -5,7 +5,7 @@ if [[ -f /etc/pam.d/system-auth ]]; then
 fi
 
 # The old SDDM autologin path skipped pam_unix, so faillock had to be reset there.
-# Freearchy-nightly does not install SDDM. Leave the file alone unless it still exists.
+# Freearchy testing does not install SDDM. Leave the file alone unless it still exists.
 if [[ -f /etc/pam.d/sddm-autologin ]]; then
   sudo sed -i '/pam_faillock\.so preauth/d' /etc/pam.d/sddm-autologin
   if ! grep -q 'pam_faillock\.so authsucc' /etc/pam.d/sddm-autologin; then

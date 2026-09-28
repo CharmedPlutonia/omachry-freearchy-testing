@@ -15,8 +15,8 @@ hl.window_rule({ match = { class = [[org.omarchy.screensaver]] }, float = true }
 hl.window_rule({ match = { class = [[org.omarchy.screensaver]] }, animation = [[slide]] })
 
 -- No transparency on media windows
-hl.window_rule({ match = { class = [[^(zoom|vlc|mpv|org.kde.kdenlive|com.obsproject.Studio|com.github.PintaProject.Pinta|imv|org.gnome.NautilusPreviewer)$]] }, tag = [[-default-opacity]] })
-hl.window_rule({ match = { class = [[^(zoom|vlc|mpv|org.kde.kdenlive|com.obsproject.Studio|com.github.PintaProject.Pinta|imv|org.gnome.NautilusPreviewer)$]] }, opacity = [[1 1]] })
+hl.window_rule({ match = { class = [[^(vlc|mpv|com.obsproject.Studio|com.github.PintaProject.Pinta|imv|org.gnome.NautilusPreviewer)$]] }, tag = [[-default-opacity]] })
+hl.window_rule({ match = { class = [[^(vlc|mpv|com.obsproject.Studio|com.github.PintaProject.Pinta|imv|org.gnome.NautilusPreviewer)$]] }, opacity = [[1 1]] })
 
 -- Popped window rounding. Freearchy stays square.
 hl.window_rule({ match = { tag = [[pop]] }, rounding = 0 })

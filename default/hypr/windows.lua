@@ -13,7 +13,6 @@ hl.window_rule({ match = { class = [[^$]], title = [[^$]], xwayland = true, floa
 -- App-specific tweaks (may remove default-opacity tag)
 local app_dir = (os.getenv("HOME") or "") .. "/.local/share/omarchy/default/hypr/apps"
 local app_rules = {
-  "1password.lua",
   "bitwarden.lua",
   "browser.lua",
   "hyprshot.lua",
@@ -27,7 +26,6 @@ local app_rules = {
   "moonlight.lua",
   "system.lua",
   "telegram.lua",
-  "typora.lua",
   "terminals.lua",
   "walker.lua",
   "webcam-overlay.lua",
