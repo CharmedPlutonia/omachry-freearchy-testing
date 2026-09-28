@@ -93,13 +93,15 @@ hl.curve("almostLinear", { type = "bezier", points = { { 0.5, 0.5 }, { 0.75, 1.0
 hl.curve("quick", { type = "bezier", points = { { 0.15, 0 }, { 0.1, 1 } } })
 
 local function anim(leaf, enabled, speed, curve, style)
-  hl.animation({
-    leaf = leaf,
-    enabled = enabled,
-    speed = speed,
-    curve = curve,
-    style = style,
-  })
+  local spec = { leaf = leaf, enabled = enabled }
+  if enabled then
+    spec.speed = speed
+    spec.bezier = curve
+    if style then
+      spec.style = style
+    end
+  end
+  hl.animation(spec)
 end
 
 anim("global", true, 10, "default", nil)
