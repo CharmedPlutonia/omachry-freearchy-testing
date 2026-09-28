@@ -2,8 +2,8 @@
 Name=nano
 GenericName=Text Editor
 Comment=Edit text files
-Exec=nano %F
-Terminal=true
+Exec=xdg-terminal-exec -- nano %F
+Terminal=false
 Type=Application
 Icon=text-editor
 Categories=Utility;TextEditor;

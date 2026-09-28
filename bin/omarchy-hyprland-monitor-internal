@@ -4,7 +4,7 @@
 # omarchy:args=<on|off|toggle|recover>
 
 TOGGLE="internal-monitor-disable"
-TOGGLE_FLAG="$HOME/.local/state/omarchy/toggles/hypr/$TOGGLE.conf"
+TOGGLE_FLAG="$HOME/.local/state/omarchy/toggles/hypr/$TOGGLE.lua"
 MIRROR_TOGGLE="internal-monitor-mirror"
 
 # Get internal monitor name dynamically
@@ -22,7 +22,7 @@ disable() {
     exit 1
   fi
   if omarchy-hyprland-toggle-disabled "$TOGGLE" && omarchy-hyprland-toggle-disabled "$MIRROR_TOGGLE"; then
-    echo "monitor=$INTERNAL,disable" >"$TOGGLE_FLAG"
+    printf 'hl.monitor({ output = "%s", mode = "disable" })\n' "$INTERNAL" >"$TOGGLE_FLAG"
     notify-send -u low "󰍹    Laptop display disabled"
     hyprctl reload
   fi

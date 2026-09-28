@@ -34,8 +34,14 @@ NEW_SCALE=${SCALES[$NEW_IDX]}
 
 hyprctl keyword monitor "$ACTIVE_MONITOR,${WIDTH}x${HEIGHT}@${REFRESH_RATE},auto,$NEW_SCALE"
 
-# Persist to monitors.conf if the user has a single generic catch-all line
-# (ignoring disabled monitors), so the scale survives reboots.
+# Persist the scale when the user still has the generic catch-all monitor line.
+MONITOR_LUA="$HOME/.config/hypr/monitors.lua"
+if [[ -f $MONITOR_LUA ]] && grep -q 'mode = "preferred", position = "auto", scale = "auto"' "$MONITOR_LUA"; then
+  sed -i "s/scale = \"auto\"/scale = ${NEW_SCALE}/" "$MONITOR_LUA"
+elif [[ -f $MONITOR_LUA ]] && grep -q 'mode = "preferred", position = "auto", scale = ' "$MONITOR_LUA"; then
+  sed -i -E "s/(mode = \"preferred\", position = \"auto\", scale = )[^}]*/\\1${NEW_SCALE}/" "$MONITOR_LUA"
+fi
+
 MONITOR_CONF="$HOME/.config/hypr/monitors.conf"
 if [[ -f $MONITOR_CONF ]]; then
   mapfile -t ACTIVE_LINES < <(grep -E '^[[:space:]]*monitor=' "$MONITOR_CONF" | grep -vE 'disable[[:space:]]*$')

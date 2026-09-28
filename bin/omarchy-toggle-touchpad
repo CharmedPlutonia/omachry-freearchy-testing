@@ -3,7 +3,7 @@
 # omarchy:summary=Enable, disable, or toggle the touchpad
 # omarchy:args=[on|off|toggle]
 
-STATE_CONF="$HOME/.local/state/omarchy/toggles/hypr/touchpad-disabled.conf"
+STATE_CONF="$HOME/.local/state/omarchy/toggles/hypr/touchpad-disabled.lua"
 
 device="$(omarchy-hw-touchpad)"
 
@@ -21,7 +21,7 @@ enable() {
 disable() {
   hyprctl keyword "device[$device]:enabled" false >/dev/null
   mkdir -p "$(dirname "$STATE_CONF")"
-  printf 'device {\n    name = %s\n    enabled = false\n}\n' "$device" > "$STATE_CONF"
+  printf 'hl.config({\n  device = {\n    {\n      name = "%s",\n      enabled = false,\n    },\n  },\n})\n' "$device" > "$STATE_CONF"
   omarchy-swayosd-client --custom-icon touchpad-disabled-symbolic --custom-message "Touchpad disabled"
 }
 
